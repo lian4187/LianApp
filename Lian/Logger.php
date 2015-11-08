@@ -8,7 +8,7 @@ namespace LianApp\Lian;
  */
 class Logger
 {
-    private $logger;
+    private static $logger;
 
     /**
      * single instance
@@ -17,8 +17,8 @@ class Logger
      */
     public static function getLogger()
     {
-        if ($logger instanceof Logger) {
-            return $logger;
+        if (self::$logger instanceof Logger) {
+            return self::$logger;
         } else {
             self::$logger = new self();
         }
