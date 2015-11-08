@@ -2,6 +2,8 @@
 
 namespace LianApp\Lian\Base\Handler;
 
+use LianApp\Lian\Base\Tool\Xml;
+
 /**
  * Class Text
  * @author lian <lianxiaoyang.happy@163.com>
