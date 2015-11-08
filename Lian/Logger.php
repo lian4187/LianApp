@@ -63,7 +63,7 @@ class Logger
      */
     protected function writeIn($info)
     {
-        file_put_contents(Configure::$LOG_FILE, $info, FILE_APPEND);
+        file_put_contents(Configure::LOG_FILE, $info, FILE_APPEND);
     }
 
 }

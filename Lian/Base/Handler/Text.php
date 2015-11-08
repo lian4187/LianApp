@@ -3,6 +3,8 @@
 namespace LianApp\Lian\Base\Handler;
 
 use LianApp\Lian\Base\Tool\Xml;
+use LianApp\Lian\Base\Tool\Curl;
+use LianApp\Lian\Configure;
 
 /**
  * Class Text
@@ -25,7 +27,13 @@ class Text extends BaseHandler
      */
     public function handle()
     {
-        $content = '谢谢使用，你发送的消息为:' . $this->xmlObj->Content;
+        $url = 'http://apis.baidu.com/hihelpsme/chinajoke/getjokelist?page=1';
+        $dataArr = array(
+            'sendData' => 'apiKey:' . Configure::API_KEY,
+        );
+        $res = Curl::send($url, $dataArr);
+        //$content = '谢谢使用，你发送的消息为:' . $this->xmlObj->Content;
+        $content = $res;
 
         $responseArr = array(
             'ToUserName' => $this->xmlObj->FromUserName,
