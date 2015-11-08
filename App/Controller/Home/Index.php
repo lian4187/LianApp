@@ -23,10 +23,14 @@ class Index
         $checker = new Checker();
         $checkRes = $checker->check($requestData);
 
+        // 2. 业务逻辑处理
         if ($checkRes) {
-            $echoStr = $requestData["echostr"];
-            echo $echoStr;
+            //$echoStr = $requestData["echostr"];
+            //echo $echoStr;
+            echo 'OK!';
             exit;
+        } else {
+            echo 'error!';
         }
     }
 
