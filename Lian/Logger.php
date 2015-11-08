@@ -17,11 +17,10 @@ class Logger
      */
     public static function getLogger()
     {
-        if (self::$logger instanceof Logger) {
-            return self::$logger;
-        } else {
+        if (!(self::$logger instanceof Logger)) {
             self::$logger = new self();
         }
+        return self::$logger;
     }
 
     private function __construct()
