@@ -40,6 +40,7 @@ class Event extends BaseHandler
             $this->logger->info($xmlStr);
             return $xmlStr;
         } else {
+            // TODO
             return null;
         }
     }
