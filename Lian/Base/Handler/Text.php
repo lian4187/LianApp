@@ -31,7 +31,9 @@ class Text extends BaseHandler
         $dataArr = array(
             'sendData' => 'apiKey:' . Configure::API_KEY,
         );
-        $res = Curl::send($url, $dataArr);
+        $apiRes = Curl::send($url, $dataArr);
+        $result = json_decode($apiRes, true);
+        $res = $result['res_body']['JokeList'][0]['JokeContent'];
         //$content = '谢谢使用，你发送的消息为:' . $this->xmlObj->Content;
         $content = $res;
 
