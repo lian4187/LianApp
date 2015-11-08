@@ -1,2 +1,2 @@
-# LianApp
-lian app
+# lianApp
+myOwnApp

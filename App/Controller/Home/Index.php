@@ -3,6 +3,7 @@
 namespace LianApp\App\Controller\Home;
 
 use LianApp\Lian\Base\Checker;
+use LianApp\Lian\Base\Handler\Factory as HandlerFactory;
 
 /**
  * Class Index
@@ -25,12 +26,14 @@ class Index
 
         // 2. 业务逻辑处理
         if ($checkRes) {
-            //$echoStr = $requestData["echostr"];
-            //echo $echoStr;
-            echo 'OK!';
+            $requestData['HTTP_RAW_POST_DATA'] = $GLOBALS['HTTP_RAW_POST_DATA'];
+            $handler = HandlerFactory::getHandler($requestData);
+            $responseStr = $handler->handle($requestData);
+            echo $responseStr;
             exit;
         } else {
             echo 'error!';
+            exit;
         }
     }
 

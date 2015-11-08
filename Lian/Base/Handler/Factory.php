@@ -33,6 +33,9 @@ class Factory
             case 'event':
                 return Event($xmlObj);
                 break;
+            case 'text':
+                return Event($xmlObj);
+                break;
             default:
 
                 break;

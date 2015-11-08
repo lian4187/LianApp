@@ -6,7 +6,7 @@ namespace LianApp\Lian\Base\Handler;
  * Class Check
  * @author lian <lianxiaoyang.happy@163.com>
  */
-class Check
+class Check extends BaseHandler
 {
     /**
      * @param mixed $xmlObj
