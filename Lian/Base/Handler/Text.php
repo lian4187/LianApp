@@ -27,13 +27,15 @@ class Text extends BaseHandler
      */
     public function handle()
     {
-        $url = 'http://apis.baidu.com/hihelpsme/chinajoke/getjokelist?page=1';
+        $pageNum = rand(1, 10000);
+        $url = 'http://apis.baidu.com/hihelpsme/chinajoke/getjokelist?page=' . $pageNum;
         $dataArr = array(
             'sendData' => 'apiKey:' . Configure::API_KEY,
         );
         $apiRes = Curl::send($url, $dataArr);
         $result = json_decode($apiRes, true);
-        $res = $result['res_body']['JokeList'][0]['JokeContent'];
+        $jokeNum = rand(0, 19);
+        $res = $result['res_body']['JokeList'][$jokeNum]['JokeContent'];
         //$content = '谢谢使用，你发送的消息为:' . $this->xmlObj->Content;
         $content = $res;
 
