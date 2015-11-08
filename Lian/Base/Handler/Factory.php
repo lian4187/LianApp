@@ -31,10 +31,10 @@ class Factory
 
         switch ($xmlObj->MsgType) {
             case 'event':
-                return Event($xmlObj);
+                return new Event($xmlObj);
                 break;
             case 'text':
-                return Event($xmlObj);
+                return new Text($xmlObj);
                 break;
             default:
 
