@@ -12,4 +12,4 @@ spl_autoload_register('LianApp\\Lian\\Loader::autoload');
 
 
 // 业务逻辑
-LianApp\App\Controller\Home\Index::test();
+LianApp\App\Controller\Home\Index::index();
