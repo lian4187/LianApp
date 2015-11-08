@@ -25,7 +25,7 @@ class Text extends BaseHandler
      */
     public function handle()
     {
-        $content = '谢谢使用，你发送的消息为:' . $xmlObj->Content;
+        $content = '谢谢使用，你发送的消息为:' . $this->xmlObj->Content;
         $responseArr = array(
             'ToUserName' => $this->xmlObj->FromUserName,
             'FromUserName' => $this->xmlObj->ToUserName,
