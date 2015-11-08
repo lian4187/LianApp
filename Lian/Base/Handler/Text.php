@@ -23,22 +23,18 @@ class Text extends BaseHandler
      */
     public function handle()
     {
-        if ($this->xmlObj->Event == 'subscribe') {
-            $content = '谢谢使用，你发送的消息为:' . $xmlObj->Content;
-            $responseArr = array(
-                'ToUserName' => $this->xmlObj->FromUserName,
-                'FromUserName' => $this->xmlObj->ToUserName,
-                'CreateTime' => time(),
-                'MsgType' => 'text',
-                'Content' => $content,
-            );
-            $xmlStr = Xml::getXmlStr($responseArr);
+        $content = '谢谢使用，你发送的消息为:' . $xmlObj->Content;
+        $responseArr = array(
+            'ToUserName' => $this->xmlObj->FromUserName,
+            'FromUserName' => $this->xmlObj->ToUserName,
+            'CreateTime' => time(),
+            'MsgType' => 'text',
+            'Content' => $content,
+        );
+        $xmlStr = Xml::getXmlStr($responseArr);
 
-            $this->logger->info($xmlStr);
-            return $xmlStr;
-        } else {
-            return null;
-        }
+        $this->logger->info($xmlStr);
+        return $xmlStr;
     }
 
 }

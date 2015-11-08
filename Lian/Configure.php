@@ -8,5 +8,6 @@ namespace LianApp\Lian;
  */
 class Configure
 {
-    public static $LOG_FILE = '/home/lian/var/LianApp.log';
+    //public static $LOG_FILE = '/home/lian/var/LianApp.log';
+    public static $LOG_FILE = '/tmp/LianApp.log';
 }
