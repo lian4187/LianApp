@@ -18,7 +18,7 @@ class Joke
      */
     public static function getOneJoke()
     {
-        $pageNum = mt_rand(1, 10000);
+        $pageNum = mt_rand(1, 500);
         $url = 'http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text?page=' . $pageNum;
         $dataArr = array(
             'sendData' => 'apiKey:' . Configure::API_KEY,
@@ -26,7 +26,13 @@ class Joke
         $apiRes = Curl::send($url, $dataArr);
         $result = json_decode($apiRes, true);
         $jokeNum = mt_rand(0, 19);
-        $oneJokeStr = $result['showapi_res_body']['contentlist'][$jokeNum]['text'];
+        if (isset($result['showapi_res_body']) &&
+            isset($result['showapi_res_body']['contentlist'])
+        ) {
+            $oneJokeStr = $result['showapi_res_body']['contentlist'][$jokeNum]['text'];
+        } else {
+            $oneJokeStr = 'fetch joke error!';
+        }
         return $oneJokeStr;
     }
 }
