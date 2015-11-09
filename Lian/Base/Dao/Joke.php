@@ -12,13 +12,13 @@ use LianApp\Lian\Configure;
 class Joke
 {
     /**
-     * undocumented function
+     * getOneJoke
      *
-     * @return void
+     * @return string
      */
     public static function getOneJoke()
     {
-        $pageNum = rand(1, 10000);
+        $pageNum = mt_rand(1, 100000);
         $url = 'http://apis.baidu.com/hihelpsme/chinajoke/getjokelist?page=' . $pageNum;
         $dataArr = array(
             'sendData' => 'apiKey:' . Configure::API_KEY,
