@@ -58,7 +58,7 @@ class Factory
                 return $arr['@cdata'];
             } else {
                 foreach ($arr as $key => $value) {
-                    $arr[$key] = $this->removeCData($value);
+                    $arr[$key] = self::removeCData($value);
                 }
                 return $arr;
             }
