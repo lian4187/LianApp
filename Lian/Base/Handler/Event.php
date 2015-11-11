@@ -39,7 +39,7 @@ class Event extends BaseHandler
             );
             $xmlStr = Array2XML::createXML('xml', $responseArr)->saveXML();
 
-            $this->logger->info(var_export($xmlStr, true));
+            $this->logger->info('返回xml', var_export($xmlStr, true));
             return $xmlStr;
         } else {
             // TODO

@@ -19,7 +19,7 @@ class Factory
      */
     public static function getHandler($requestData)
     {
-        \LianApp\Lian\Logger::getLogger()->info(var_export($requestData, true));
+        \LianApp\Lian\Logger::getLogger()->info('requestData', var_export($requestData, true));
         if (isset($requestData['echostr'])) {
             $xmlArr = array(
                 'xml' => array(

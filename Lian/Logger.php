@@ -38,9 +38,9 @@ class Logger
      *
      * @return void
      */
-    public function info($info)
+    public function info($title, $info)
     {
-        $wInfo = "INFO____:\t" . $info;
+        $wInfo = "INFO____:\t" . $title . "\t" . $info;
         $this->writeIn($wInfo);
     }
 
@@ -49,9 +49,9 @@ class Logger
      *
      * @return void
      */
-    public function warn($info)
+    public function warn($title, $info)
     {
-        $wInfo = "WARN____:\t" . $info;
+        $wInfo = "WARN____:\t" . $title . "\t" . $info;
         $this->writeIn($wInfo);
     }
 
