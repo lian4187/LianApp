@@ -31,6 +31,7 @@ class Factory
 
         $xmlStr = $requestData['HTTP_RAW_POST_DATA'];
         $xmlArr = XML2Array::createArray($xmlStr);
+        $xmlArr = self::removeCData($xmlArr);
 
         switch ($xmlArr['xml']['MsgType']) {
             case 'event':
@@ -42,6 +43,27 @@ class Factory
             default:
 
                 break;
+        }
+    }
+
+    /**
+     * removeCData
+     *
+     * @return void
+     */
+    private static function removeCData(&$arr)
+    {
+        if (is_array($arr)) {
+            if (isset($arr['@cdata'])) {
+                return $arr['@cdata'];
+            } else {
+                foreach ($arr as $key => $value) {
+                    $arr[$key] = $this->removeCData($value);
+                }
+                return $arr;
+            }
+        } else {
+            return $arr;
         }
     }
 
