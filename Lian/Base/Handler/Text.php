@@ -42,7 +42,7 @@ class Text extends BaseHandler
         );
         $xmlStr = Array2XML::createXML('xml', $responseArr);
 
-        $this->logger->info($xmlStr);
+        $this->logger->info(var_export($xmlStr, true));
         return $xmlStr;
     }
 }
