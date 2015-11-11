@@ -2,6 +2,9 @@
 
 namespace LianApp\Lian\Base\Builder;
 
+use LianApp\Lian\Base\Tool\Array2XML;
+use LianApp\Lian\Base\Tool\XML2Array;
+
 /**
  * Class Text
  * @author lian <lianxiaoyang.happy@163.com>
