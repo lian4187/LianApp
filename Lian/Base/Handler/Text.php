@@ -8,6 +8,7 @@ use LianApp\Lian\Configure;
 use LianApp\Lian\Base\Dao\Joke;
 use LianApp\Lian\Base\Tool\Array2XML;
 use LianApp\Lian\Base\Tool\XML2Array;
+use LianApp\Lian\Base\Builder\Text as TextBuilder;
 
 /**
  * Class Text
@@ -33,14 +34,13 @@ class Text extends BaseHandler
         //$content = '谢谢使用，你发送的消息为:' . $this->xmlArr->Content;
         $content = Joke::getOneTextJoke();
 
-        $responseArr = array(
-            'ToUserName' => array('@cdata' => $this->xmlArr['xml']['FromUserName']),
-            'FromUserName' => array('@cdata' => $this->xmlArr['xml']['ToUserName']),
-            'CreateTime' => time(),
-            'MsgType' => array('@cdata' => 'text'),
-            'Content' => array('@cdata' => $content),
+        $textBuilder = new TextBuilder(
+            $this->xmlArr['xml']['FromUserName'],
+            $this->xmlArr['xml']['ToUserName'],
+            $content
         );
-        $xmlStr = Array2XML::createXML('xml', $responseArr)->saveXML();
+
+        $xmlStr = $textBuilder->build();
 
         $this->logger->info('返回xml', var_export($xmlStr, true));
         return $xmlStr;

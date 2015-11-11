@@ -6,7 +6,7 @@ namespace LianApp\Lian\Base\Builder;
  * Class Common
  * @author lian <lianxiaoyang.happy@163.com>
  */
-class Common
+abstract class Common
 {
     protected $fromUserName;
     protected $toUserName;
@@ -27,4 +27,10 @@ class Common
         $this->createTime = $createTime;
     }
 
+    /**
+     * build
+     *
+     * @return void
+     */
+    abstract public function build();
 }

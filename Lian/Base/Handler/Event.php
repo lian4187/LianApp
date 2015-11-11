@@ -30,14 +30,14 @@ class Event extends BaseHandler
     {
         if ($this->xmlArr['xml']['Event'] == 'subscribe') {
             $content = 'Hello 欢迎关注：奔跑的小羊，目前处于测试阶段';
-            $responseArr = array(
-                'ToUserName' => array('@cdata' => $this->xmlArr['xml']['FromUserName']),
-                'FromUserName' => array('@cdata' => $this->xmlArr['xml']['ToUserName']),
-                'CreateTime' => time(),
-                'MsgType' => array('@cdata' => 'text'),
-                'Content' => array('@cdata' => $content),
+
+            $textBuilder = new TextBuilder(
+                $this->xmlArr['xml']['FromUserName'],
+                $this->xmlArr['xml']['ToUserName'],
+                $content
             );
-            $xmlStr = Array2XML::createXML('xml', $responseArr)->saveXML();
+
+            $xmlStr = $textBuilder->build();
 
             $this->logger->info('返回xml', var_export($xmlStr, true));
             return $xmlStr;
