@@ -6,6 +6,8 @@ use LianApp\Lian\Base\Tool\Xml;
 use LianApp\Lian\Base\Tool\Curl;
 use LianApp\Lian\Configure;
 use LianApp\Lian\Base\Dao\Joke;
+use LianApp\Lian\Base\Tool\Array2XML;
+use LianApp\Lian\Base\Tool\XML2Array;
 
 /**
  * Class Text
