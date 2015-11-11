@@ -3,6 +3,8 @@
 namespace LianApp\Lian\Base\Handler;
 
 use LianApp\Lian\Base\Tool\Xml;
+use LianApp\Lian\Base\Tool\Array2XML;
+use LianApp\Lian\Base\Tool\XML2Array;
 
 /**
  * Class Event
@@ -12,11 +14,11 @@ class Event extends BaseHandler
 {
 
     /**
-     * @param mixed $xmlObj
+     * @param mixed $xmlArr
      */
-    public function __construct($xmlObj)
+    public function __construct($xmlArr)
     {
-        parent::__construct($xmlObj);
+        parent::__construct($xmlArr);
     }
 
     /**
@@ -26,16 +28,16 @@ class Event extends BaseHandler
      */
     public function handle()
     {
-        if ($this->xmlObj->Event == 'subscribe') {
+        if ($this->xmlArr['xml']['Event'] == 'subscribe') {
             $content = 'Hello 欢迎关注：奔跑的小羊，目前处于测试阶段';
             $responseArr = array(
-                'ToUserName' => $this->xmlObj->FromUserName,
-                'FromUserName' => $this->xmlObj->ToUserName,
+                'ToUserName' => array('@cdata' => $this->xmlArr['xml']['FromUserName']),
+                'FromUserName' => array('@cdata' => $this->xmlArr['xml']['ToUserName']),
                 'CreateTime' => time(),
-                'MsgType' => 'text',
-                'Content' => $content,
+                'MsgType' => array('@cdata' => 'text'),
+                'Content' => array('@cdata' => $content),
             );
-            $xmlStr = Xml::getXmlStr($responseArr);
+            $xmlStr = Array2XML::createXML('xml', $responseArr);
 
             $this->logger->info($xmlStr);
             return $xmlStr;

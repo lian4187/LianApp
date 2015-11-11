@@ -11,12 +11,33 @@ use LianApp\Lian\Logger;
 abstract class BaseHandler implements IHandle
 {
     protected $logger;
-    protected $xmlObj;
+    protected $xmlArr;
 
-    public function __construct($xmlObj)
+    public function __construct($xmlArr)
     {
         $this->logger = Logger::getLogger();
-        $this->xmlObj = $xmlObj;
+        $this->xmlArr = $this->removeCData($xmlArr);
+    }
+
+    /**
+     * removeCData
+     *
+     * @return void
+     */
+    private function removeCData(&$arr)
+    {
+        if (is_array($arr)) {
+            if (isset($arr['@cdata'])) {
+                return $arr['@cdata'];
+            } else {
+                foreach ($arr as $key => $value) {
+                    $arr[$key] = $this->removeCData($value);
+                }
+                return $arr;
+            }
+        } else {
+            return $arr;
+        }
     }
 
 }

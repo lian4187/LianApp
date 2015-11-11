@@ -3,6 +3,8 @@
 namespace LianApp\Lian\Base\Handler;
 
 use LianApp\Lian\Base\Tool\Xml;
+use LianApp\Lian\Base\Tool\Array2XML;
+use LianApp\Lian\Base\Tool\XML2Array;
 
 /**
  * Class Factory
@@ -19,23 +21,23 @@ class Factory
     {
         \LianApp\Lian\Logger::getLogger()->info(var_export($requestData, true));
         if (isset($requestData['echostr'])) {
-            $responseArr = array(
-                'echostr' => $requestData['echostr'],
+            $xmlArr = array(
+                'xml' => array(
+                    'echostr' => $requestData['echostr'],
+                )
             );
-            $xmlStr = Xml::getXmlStr($responseArr);
-            $xmlObj = Xml::parseXmlStr($xmlStr);
-            return new Check($xmlObj);
+            return new Check($xmlArr);
         }
 
         $xmlStr = $requestData['HTTP_RAW_POST_DATA'];
-        $xmlObj = simplexml_load_string($xmlStr);
+        $xmlArr = XML2Array::createArray($xmlStr);
 
-        switch ($xmlObj->MsgType) {
+        switch ($xmlArr['xml']['MsgType']) {
             case 'event':
-                return new Event($xmlObj);
+                return new Event($xmlArr);
                 break;
             case 'text':
-                return new Text($xmlObj);
+                return new Text($xmlArr);
                 break;
             default:
 

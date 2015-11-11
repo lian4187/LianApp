@@ -9,11 +9,11 @@ namespace LianApp\Lian\Base\Handler;
 class Check extends BaseHandler
 {
     /**
-     * @param mixed $xmlObj
+     * @param mixed $xmlArr
      */
-    public function __construct($xmlObj)
+    public function __construct($xmlArr)
     {
-        parent::__construct($xmlObj);
+        parent::__construct($xmlArr);
     }
 
     /**
@@ -23,6 +23,6 @@ class Check extends BaseHandler
      */
     public function handle()
     {
-        return $xmlObj->echostr;
+        return $this->xmlArr['xml']['echostr'];
     }
 }

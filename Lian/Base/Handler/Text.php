@@ -14,11 +14,11 @@ use LianApp\Lian\Base\Dao\Joke;
 class Text extends BaseHandler
 {
     /**
-     * @param mixed $xmlObj
+     * @param mixed $xmlArr
      */
-    public function __construct($xmlObj)
+    public function __construct($xmlArr)
     {
-        parent::__construct($xmlObj);
+        parent::__construct($xmlArr);
     }
 
     /**
@@ -28,17 +28,17 @@ class Text extends BaseHandler
      */
     public function handle()
     {
-        //$content = '谢谢使用，你发送的消息为:' . $this->xmlObj->Content;
-        $content = Joke::getOneJoke();
+        //$content = '谢谢使用，你发送的消息为:' . $this->xmlArr->Content;
+        $content = Joke::getOneTextJoke();
 
         $responseArr = array(
-            'ToUserName' => $this->xmlObj->FromUserName,
-            'FromUserName' => $this->xmlObj->ToUserName,
+            'ToUserName' => array('@cdata' => $this->xmlArr['xml']['FromUserName']),
+            'FromUserName' => array('@cdata' => $this->xmlArr['xml']['ToUserName']),
             'CreateTime' => time(),
-            'MsgType' => 'text',
-            'Content' => $content,
+            'MsgType' => array('@cdata' => 'text'),
+            'Content' => array('@cdata' => $content),
         );
-        $xmlStr = Xml::getXmlStr($responseArr);
+        $xmlStr = Array2XML::createXML('xml', $responseArr);
 
         $this->logger->info($xmlStr);
         return $xmlStr;

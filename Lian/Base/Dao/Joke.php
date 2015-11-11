@@ -12,11 +12,11 @@ use LianApp\Lian\Configure;
 class Joke
 {
     /**
-     * getOneJoke
+     * getOneTextJoke
      *
      * @return string
      */
-    public static function getOneJoke()
+    public static function getOneTextJoke()
     {
         $pageNum = mt_rand(1, 500);
         $url = 'http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_text?page=' . $pageNum;

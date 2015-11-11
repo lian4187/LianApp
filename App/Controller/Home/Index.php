@@ -26,7 +26,9 @@ class Index
 
         // 2. 业务逻辑处理
         if ($checkRes) {
-            $requestData['HTTP_RAW_POST_DATA'] = $GLOBALS['HTTP_RAW_POST_DATA'];
+            if (isset($GLOBALS['HTTP_RAW_POST_DATA'])) {
+                $requestData['HTTP_RAW_POST_DATA'] = $GLOBALS['HTTP_RAW_POST_DATA'];
+            }
             $handler = HandlerFactory::getHandler($requestData);
             $responseStr = $handler->handle();
             echo $responseStr;
