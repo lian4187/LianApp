@@ -37,7 +37,7 @@ class Event extends BaseHandler
                 'MsgType' => array('@cdata' => 'text'),
                 'Content' => array('@cdata' => $content),
             );
-            $xmlStr = Array2XML::createXML('xml', $responseArr);
+            $xmlStr = Array2XML::createXML('xml', $responseArr)->saveXML();
 
             $this->logger->info(var_export($xmlStr, true));
             return $xmlStr;
