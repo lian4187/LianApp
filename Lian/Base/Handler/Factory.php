@@ -2,9 +2,9 @@
 
 namespace LianApp\Lian\Base\Handler;
 
-use LianApp\Lian\Base\Tool\Xml;
 use LianApp\Lian\Base\Tool\Array2XML;
 use LianApp\Lian\Base\Tool\XML2Array;
+use LianApp\Lian\Logger;
 
 /**
  * Class Factory
@@ -19,7 +19,7 @@ class Factory
      */
     public static function getHandler($requestData)
     {
-        \LianApp\Lian\Logger::getLogger()->info('requestData', var_export($requestData, true));
+        Logger::getLogger()->info('requestData', var_export($requestData, true));
         if (isset($requestData['echostr'])) {
             $xmlArr = array(
                 'xml' => array(
@@ -29,6 +29,7 @@ class Factory
             return new Check($xmlArr);
         }
 
+        // TODO: 使用密文传输，解密
         $xmlStr = $requestData['HTTP_RAW_POST_DATA'];
         $xmlArr = XML2Array::createArray($xmlStr);
         $xmlArr = self::removeCData($xmlArr);

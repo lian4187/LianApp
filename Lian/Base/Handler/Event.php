@@ -2,9 +2,9 @@
 
 namespace LianApp\Lian\Base\Handler;
 
-use LianApp\Lian\Base\Tool\Xml;
 use LianApp\Lian\Base\Tool\Array2XML;
 use LianApp\Lian\Base\Tool\XML2Array;
+use LianApp\Lian\Base\Builder\Text as TextBuilder;
 
 /**
  * Class Event

@@ -2,7 +2,6 @@
 
 namespace LianApp\Lian\Base\Handler;
 
-use LianApp\Lian\Base\Tool\Xml;
 use LianApp\Lian\Base\Tool\Curl;
 use LianApp\Lian\Configure;
 use LianApp\Lian\Base\Dao\Joke;
