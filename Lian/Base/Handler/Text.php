@@ -56,7 +56,7 @@ class Text extends BaseHandler
             'nonce' => $nonce,
         ));
 
-        $encryptBuilder = new EncryptBuilder($encrypt, $msgSignature, $timestamp, $nonce);
+        $encryptBuilder = new EncryptBuilder($encryptedMsg, $msgSignature, $timestamp, $nonce);
         $xmlStr = $encryptBuilder->build();
 
 

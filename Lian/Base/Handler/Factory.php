@@ -32,6 +32,7 @@ class Factory
         }
 
         if ('aes' == strtolower($requestData['encrypt_type'])) {
+            // TODO: 校验 msg_signature
             $xmlStr = $requestData['HTTP_RAW_POST_DATA'];
             $xmlArr = XML2Array::createArray($xmlStr);
             $xmlArr = self::removeCData($xmlArr);
