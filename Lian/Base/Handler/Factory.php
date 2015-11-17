@@ -5,6 +5,8 @@ namespace LianApp\Lian\Base\Handler;
 use LianApp\Lian\Base\Tool\Array2XML;
 use LianApp\Lian\Base\Tool\XML2Array;
 use LianApp\Lian\Logger;
+use LianApp\Lian\Base\Configure;
+use LianApp\Lian\Base\Tool\Prpcrypt;
 
 /**
  * Class Factory
@@ -30,9 +32,20 @@ class Factory
         }
 
         // TODO: 使用密文传输，解密
-        $xmlStr = $requestData['HTTP_RAW_POST_DATA'];
-        $xmlArr = XML2Array::createArray($xmlStr);
-        $xmlArr = self::removeCData($xmlArr);
+        if ('aes' == strtolower($requestData['encrypt_type'])) {
+            $xmlStr = $requestData['HTTP_RAW_POST_DATA'];
+            $xmlArr = XML2Array::createArray($xmlStr);
+            $xmlArr = self::removeCData($xmlArr);
+            $encryptedMsg = $xmlArr['Encrypt'];
+            $pc = new Prpcrypt(Configure::$ENCODING_AES_KEY);
+            $decryptedMsg = $pc->decrypt($encryptedMsg, $appId);
+            $xmlArr = XML2Array::createArray($decryptedMsg);
+            $xmlArr = self::removeCData($xmlArr);
+        } else {
+            // TODO:
+            // exception
+        }
+
 
         switch ($xmlArr['xml']['MsgType']) {
             case 'event':

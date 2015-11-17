@@ -20,6 +20,9 @@ class Index
     {
         $requestData = $_GET;
 
+        // TODO:
+        // Exception
+
         // 1. check
         $checker = new Checker();
         $checkRes = $checker->check($requestData);

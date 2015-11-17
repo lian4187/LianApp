@@ -31,4 +31,24 @@ class Checker
             return false;
         }
     }
+
+    /**
+     * getSignedMsg
+     *
+     * @return void
+     */
+    public function getSignedMsg($requestData)
+    {
+        $timestamp = $requestData["timestamp"];
+        $nonce = $requestData["nonce"];
+        $encryptedMsg = $requestData['msg_encrypt'];
+
+        $token = Configure::$TOKEN;
+        $tmpArr = array($token, $timestamp, $nonce, $encryptedMsg);
+        sort($tmpArr, SORT_STRING);
+        $tmpStr = implode( $tmpArr );
+        $tmpStr = sha1( $tmpStr );
+        return $tmpStr;
+    }
+
 }

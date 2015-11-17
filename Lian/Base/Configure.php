@@ -9,4 +9,6 @@ namespace LianApp\Lian\Base;
 class Configure
 {
     public static $TOKEN = 'lian_weixin_4187';
+    public static $ENCODING_AES_KEY = 'rXfMgjJeD9t0ROl3m1POw4JgsLh02o8m6wVFIJtgmRf';
+    public static $APPID = 'wx044d9551b32d2a42';
 }

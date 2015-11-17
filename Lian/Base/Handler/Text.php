@@ -41,6 +41,23 @@ class Text extends BaseHandler
 
         $xmlStr = $textBuilder->build();
 
+        $pc = new Prpcrypt(Configure::$ENCODING_AES_KEY);
+        $encryptedMsg = $pc->encrypt($xmlStr, Configure::$APPID);
+
+        $timestamp = time();
+        $nonce = time();
+
+        $checker = new Checker();
+        $msgSignature = $checker->getSignedMsg(array(
+            'msg_encrypt' => $encryptedMsg,
+            'timestamp' => $timestamp,
+            'nonce' => $nonce,
+        ));
+
+        $encryptBuilder = new EncryptBuilder($encrypt, $msgSignature, $timestamp, $nonce);
+        $xmlStr = $encryptBuilder->build();
+
+
         $this->logger->info('返回xml', var_export($xmlStr, true));
         return $xmlStr;
     }
