@@ -2,12 +2,13 @@
 
 namespace LianApp\Lian\Base\Handler;
 
-use LianApp\Lian\Base\Tool\Curl;
-use LianApp\Lian\Base\Configure;
 use LianApp\Lian\Base\Dao\Joke;
 use LianApp\Lian\Base\Tool\Array2XML;
 use LianApp\Lian\Base\Tool\XML2Array;
 use LianApp\Lian\Base\Builder\Text as TextBuilder;
+use LianApp\Lian\Base\Builder\Encrypt as EncryptBuilder;
+use LianApp\Lian\Base\Configure;
+use LianApp\Lian\Base\Checker;
 use LianApp\Lian\Base\Tool\Prpcrypt;
 
 /**
