@@ -42,8 +42,8 @@ class Event extends BaseHandler
 
             $xmlStr = $textBuilder->build();
 
-            $pc = new Prpcrypt(Configure::$ENCODING_AES_KEY);
-            $encryptedMsg = $pc->encrypt($xmlStr, Configure::$APPID);
+            $pc = new Prpcrypt(Configure::getKey());
+            $encryptedMsg = $pc->encrypt($xmlStr, Configure::getAppid());
 
             $timestamp = time();
             $nonce = time();

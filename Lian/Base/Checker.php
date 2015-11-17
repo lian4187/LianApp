@@ -19,7 +19,7 @@ class Checker
         $timestamp = $requestData["timestamp"];
         $nonce = $requestData["nonce"];
 
-        $token = Configure::$TOKEN;
+        $token = Configure::getToken();
         $tmpArr = array($token, $timestamp, $nonce);
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode( $tmpArr );
@@ -43,7 +43,7 @@ class Checker
         $nonce = $requestData["nonce"];
         $encryptedMsg = $requestData['msg_encrypt'];
 
-        $token = Configure::$TOKEN;
+        $token = Configure::getToken();
         $tmpArr = array($token, $timestamp, $nonce, $encryptedMsg);
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode( $tmpArr );

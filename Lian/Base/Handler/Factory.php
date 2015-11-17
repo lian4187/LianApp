@@ -37,8 +37,8 @@ class Factory
             $xmlArr = XML2Array::createArray($xmlStr);
             $xmlArr = self::removeCData($xmlArr);
             $encryptedMsg = $xmlArr['Encrypt'];
-            $pc = new Prpcrypt(Configure::$ENCODING_AES_KEY);
-            $decryptedMsg = $pc->decrypt($encryptedMsg, $appId);
+            $pc = new Prpcrypt(Configure::getKey());
+            $decryptedMsg = $pc->decrypt($encryptedMsg, Configure::getAppid());
             $xmlArr = XML2Array::createArray($decryptedMsg);
             $xmlArr = self::removeCData($xmlArr);
         } else {
