@@ -31,7 +31,6 @@ class Factory
             return new Check($xmlArr);
         }
 
-        // TODO: 使用密文传输，解密
         if ('aes' == strtolower($requestData['encrypt_type'])) {
             $xmlStr = $requestData['HTTP_RAW_POST_DATA'];
             $xmlArr = XML2Array::createArray($xmlStr);

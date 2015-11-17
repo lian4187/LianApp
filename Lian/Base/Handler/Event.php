@@ -8,6 +8,7 @@ use LianApp\Lian\Base\Builder\Text as TextBuilder;
 use LianApp\Lian\Base\Builder\Encrypt as EncryptBuilder;
 use LianApp\Lian\Base\Configure;
 use LianApp\Lian\Base\Checker;
+use LianApp\Lian\Base\Tool\Prpcrypt;
 
 /**
  * Class Event

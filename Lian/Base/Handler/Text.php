@@ -8,6 +8,7 @@ use LianApp\Lian\Base\Dao\Joke;
 use LianApp\Lian\Base\Tool\Array2XML;
 use LianApp\Lian\Base\Tool\XML2Array;
 use LianApp\Lian\Base\Builder\Text as TextBuilder;
+use LianApp\Lian\Base\Tool\Prpcrypt;
 
 /**
  * Class Text
