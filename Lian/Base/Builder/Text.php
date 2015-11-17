@@ -32,6 +32,7 @@ class Text extends Common
      */
     public function build()
     {
+        Array2XML::init('1.0', 'UTF-8', false);
         $responseArr = array(
             'ToUserName' => array('@cdata' => $this->fromUserName),
             'FromUserName' => array('@cdata' => $this->toUserName),
@@ -39,6 +40,7 @@ class Text extends Common
             'MsgType' => array('@cdata' => $this->msgType),
             'Content' => array('@cdata' => $this->content),
         );
-        return Array2XML::createXML('xml', $responseArr)->saveXML();
+        $xml = Array2XML::createXML('xml', $responseArr);
+        return $xml->saveXML($xml->documentElement);
     }
 }

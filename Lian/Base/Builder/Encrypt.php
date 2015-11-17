@@ -32,12 +32,14 @@ class Encrypt
      */
     public function build()
     {
+        Array2XML::init('1.0', 'UTF-8', false);
         $responseArr = array(
             'Encrypt' => array('@cdata' => $this->encrypt),
             'MsgSignature' => array('@cdata' => $this->msgSignature),
             'TimeStamp' => $this->timestamp,
             'Nonce' => array('@cdata' => $this->nonce),
         );
-        return Array2XML::createXML('xml', $responseArr)->saveXML();
+        $xml = Array2XML::createXML('xml', $responseArr);
+        return $xml->saveXML($xml->documentElement);
     }
 }
