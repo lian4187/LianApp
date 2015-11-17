@@ -36,7 +36,7 @@ class Factory
             $xmlStr = $requestData['HTTP_RAW_POST_DATA'];
             $xmlArr = XML2Array::createArray($xmlStr);
             $xmlArr = self::removeCData($xmlArr);
-            $encryptedMsg = $xmlArr['Encrypt'];
+            $encryptedMsg = $xmlArr['xml']['Encrypt'];
             $pc = new Prpcrypt(Configure::getKey());
             $decryptedMsg = $pc->decrypt($encryptedMsg, Configure::getAppid());
             $xmlArr = XML2Array::createArray($decryptedMsg);
