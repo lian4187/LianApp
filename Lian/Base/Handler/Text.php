@@ -3,7 +3,7 @@
 namespace LianApp\Lian\Base\Handler;
 
 use LianApp\Lian\Base\Tool\Curl;
-use LianApp\Lian\Configure;
+use LianApp\Lian\Base\Configure;
 use LianApp\Lian\Base\Dao\Joke;
 use LianApp\Lian\Base\Tool\Array2XML;
 use LianApp\Lian\Base\Tool\XML2Array;
